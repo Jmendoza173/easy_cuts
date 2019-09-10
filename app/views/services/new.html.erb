@@ -1,3 +1,16 @@
 <h1> Create Service </h1>
 
-<%= render 'form' %>
+<%= form_for @service do |f| %>
+<%= f.label :hair  %>
+<%= f.text_field :hair%> <br> <br>
+<%= f.label :shape_up  %>
+<%= f.text_field :shape_up%> <br> <br>
+<%= f.label :facial, "Face"  %>
+<%= f.text_field :facial%> <br> <br>
+<%= f.label :facial_hair  %>
+<%= f.text_field :facial_hair%> <br> <br>
+<%= f.label :extra  %>
+<%= f.text_field :extra%> <br> <br>
+
+<%= f.submit %>
+<%end%>

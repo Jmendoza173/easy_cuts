@@ -1,13 +1,28 @@
 class ServicesController < ApplicationController
 
     before_action :set_service, only: [:show, :edit, :update, :destroy]
+    before_action :set_new, only: [:new,:new_hair,:new_shape_up,:new_facial,:new_facial_hair,:new_extra]
 
     def index 
         @services = Service.all
     end 
-
+    
     def new 
-        @service = Service.new 
+    end 
+
+    def new_hair 
+    end 
+
+    def new_shape_up 
+    end 
+
+    def new_facial
+    end 
+
+    def new_facial_hair 
+    end 
+
+    def new_extra 
     end 
 
     def edit
@@ -15,11 +30,11 @@ class ServicesController < ApplicationController
 
     def create 
         @service = Service.new(service_params)
-        if @service.valid?
+        if @service.hair != "nil" || @service.shape_up != "nil" || @service.facial != "nil" || @service.facial_hair != "nil" || @service.extra != "nil"
             @service.save 
             redirect_to services_path
         else   
-            flash[:errors] = @service.errors.full_messages 
+            flash[:errors] = "You did not create anything"
             render :new 
         end
     end 
@@ -41,10 +56,14 @@ class ServicesController < ApplicationController
     private 
     
     def service_params 
-        params.require(:service).permit(:name)
+        params.require(:service).permit(:hair,:shape_up,:facial,:facial_hair,:extra)
     end
 
     def set_service 
         @service = Service.find(params[:id])
+    end
+
+    def set_new 
+        @service = Service.new
     end
 end

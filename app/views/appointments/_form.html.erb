@@ -1,0 +1,29 @@
+<%= form_for @appointment do |f|%>
+    <table>
+        <tr>
+            <td> <%=f.label :date%> </td>
+            <td> <%=f.date_field :date, min: Date.today+1%> </td>
+        </tr>
+        <tr>
+            <td> <%=f.label :time%> </td>
+            <td> <%=f.time_field :time%> </td>
+        </tr>
+        <tr>
+            <td> <%=f.label :service_id, "Choose hair service:"%> </td>
+            <td> <%= f.collection_select :service_id, @services, :id, :hair) %>
+            </td>
+        </tr>
+        <tr>
+            <td> <%=f.label :customer_id%> </td>
+            <td> <%=f.collection_select :customer_id, @customers, :id, :name%> </td>
+        </tr>
+        <tr>
+            <td> <%=f.label :barber_id%> </td>
+            <td> <%=f.collection_select :barber_id, @barbers, :id, :name%> </td>
+        </tr>
+        <tr>
+            <td> <%=f.submit%> </td>
+            <td></td>
+        </tr>
+    </table>
+<%end%>

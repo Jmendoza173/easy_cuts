@@ -50,6 +50,6 @@ class BarbersController < ApplicationController
     end
 
     def barber_params
-        params.require(:customer).permit(:name, :email, :password,:if_available, :accept_cash, :accept_card, :cell, :barber_shop, :service)
+        params.require(:barber).permit(:name, :email, :password,:if_available, :accept_cash, :accept_card, :cell, :barber_shop, :service)
     end
 end

@@ -1,10 +1,48 @@
 <h1> All Services Available </h1>
 
-
+<h3>Hair cut option</h3>
+<%= link_to "Add New", hair_path%>
 <ul>
     <% @services.each do |service| %> 
         <li>
-            <%= link_to service.name, service %>
+            <%= link_to service.hair, service %>
+        </li>
+    <% end %>
+</ul>
+<h3>Shape up option</h3>
+<%= button_to "Add New", shape_up_path%>
+<ul>
+    <% @services.each do |service| %> 
+        <li>
+            <%= link_to service.shape_up, service %>
+        </li>
+    <% end %>
+</ul>
+<h3>Face option</h3>
+<%= button_to "Add New", facial_path%>
+<ul>
+    <% @services.each do |service| %> 
+        <li>
+            <%= link_to service.facial, service %>
+        </li>
+    <% end %>
+</ul>
+<h3>Facial Hair option</h3>
+<%= button_to "Add New", facial_hair_path%>
+<ul>
+    <% @services.each do |service| %> 
+        <li>
+            <%= link_to service.facial_hair, service %>
+        </li>
+    <% end %>
+</ul>
+<h3>Extra</h3>
+ <%= button_to "Add New", extra_path%>
+ <ul>
+    <% @services.each do |service| %> 
+   
+        <li>
+            <%= link_to service.extra, service %>
         </li>
     <% end %>
 </ul>
