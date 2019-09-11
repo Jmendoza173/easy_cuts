@@ -1,0 +1,9 @@
+<h1> All Barber Shops </h1>
+
+<ul>
+    <% @barber_shops.each do |shop| %> 
+        <li>
+            <%= link_to shop.name, shop %>
+        </li>
+    <% end %>
+</ul>

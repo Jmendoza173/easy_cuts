@@ -1,0 +1,13 @@
+<h1> <%= @barber_shop.name %> </h1>  
+
+<p>Located: <%= @barber_shop.location %> </p>
+
+<h3>Our Barbers</h3>
+
+<ul>
+    <% @barber_shop.barbers.each do |barber| %> 
+        <li>
+            <%= link_to barber.name, barber_path %>
+        </li>
+    <% end %>
+</ul>

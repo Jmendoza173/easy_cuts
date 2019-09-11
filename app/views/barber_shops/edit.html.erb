@@ -1,0 +1,12 @@
+<h1>Edit Barber Shop Information</h1>
+
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error_message|%>
+        <p>
+            <%= error_message %>
+        </p>
+    <% end %>
+<% end %>
+
+<%= render 'form' %>
+

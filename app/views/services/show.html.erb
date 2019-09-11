@@ -1,0 +1,13 @@
+<h1> <%= @service.name %> </h1>
+
+<%= button_to "Update Information", @service, method: :edit %>
+
+<ul>
+    <% @services.barbers.each do |barber| %> 
+        <li>
+            <%= link_to barber.name, barber %> | <%= barber.barber_shop.name %> in <%= barber.barber_shop.location %>
+        </li>
+    <% end %>
+</ul>
+
+<%=button_to “Delete Service”, @service, method: :delete%>

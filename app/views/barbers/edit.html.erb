@@ -1,0 +1,11 @@
+<h1>Update Your Profile Information </h1>
+
+<% if flash[:errors] %>
+    <% flash[:errors].each do |error_message|%>
+        <p>
+            <%= error_message %>
+        </p>
+    <% end %>
+<% end %>
+
+<%= render 'form'%>
