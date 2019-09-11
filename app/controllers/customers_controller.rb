@@ -1,7 +1,12 @@
 class CustomersController < ApplicationController
     before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
-    def show 
+    def show
+        @user = User.find(params[:id])
+        unless @logged_in_user && @logged_in_user == @user
+            flash[:errors] = ["You don't have permission to see that page"]
+            redirect_to new_login_path
+        end 
     end
 
     def new
@@ -42,6 +47,6 @@ class CustomersController < ApplicationController
     end
 
     def customer_params 
-        params.require(:customer).permit(:name, :age, :favorite_barber, :location, :email, :password, :cell)
+        params.require(:customer).permit(:name, :age, :favorite_barber, :location, :email, :password, :password_confirmation, :cell)
     end
 end

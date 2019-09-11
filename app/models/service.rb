@@ -3,5 +3,5 @@ class Service < ApplicationRecord
     has_many :shop_services, dependent: :destroy
     has_many :barber_shops, through: :shop_services 
 
-    validates :name, presence: true 
+    validates :hair,:shape_up,:facial,:facial_hair,:extra, uniqueness: true
 end

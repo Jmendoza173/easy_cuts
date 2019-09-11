@@ -10,7 +10,27 @@
         </tr>
         <tr>
             <td> <%=f.label :service_id, "Choose hair service:"%> </td>
-            <td> <%= f.collection_select :service_id, @services, :id, :hair) %>
+            <td> <%= f.collection_select :service_id, @hairs, :id, :hair %>
+            </td>
+        </tr>
+        <tr>
+            <td> <%=f.label :service_id, "Choose Shape up service:"%> </td>
+            <td> <%= f.collection_select :service_id, @shape_ups, :id, :shape_up %>
+            </td>
+        </tr>
+        <tr>
+            <td> <%=f.label :service_id, "Choose Facial service:"%> </td>
+            <td> <%= f.collection_select :service_id, @facials, :id, :facial %>
+            </td>
+        </tr>
+        <tr>
+            <td> <%=f.label :service_id, "Choose Facial Hair service:"%> </td>
+            <td> <%= f.collection_select :service_id, @facial_hairs, :id, :facial_hair %>
+            </td>
+        </tr>
+        <tr>
+            <td> <%=f.label :service_id, "Choose Extra service:"%> </td>
+            <td> <%= f.collection_select :service_id, @extras, :id, :extra %>
             </td>
         </tr>
         <tr>

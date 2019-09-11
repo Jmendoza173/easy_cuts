@@ -13,6 +13,11 @@ class AppointmentsController < ApplicationController
             @barbers = Barber.all
             @customers = Customer.all
             @services = Service.all
+            @hairs = @services.select {|service| service.hair}
+            @shape_ups = @services.select {|service| service.shape_up}
+            @facials = @services.select {|service| service.facial}
+            @facial_hairs = @services.select {|service| service.facial_hair}
+            @extras = @services.select {|service| service.extra}
         end
     
         def edit

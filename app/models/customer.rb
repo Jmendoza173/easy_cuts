@@ -1,4 +1,7 @@
 class Customer < ApplicationRecord
+
+    has_secure_password
+
     has_many :appointments, dependent: :destroy 
     has_many :barbers, through: :appointments
 
@@ -7,4 +10,8 @@ class Customer < ApplicationRecord
 
     validates :age, numericality: {greater_than_or_equal_to: 15} 
     validates :cell, length: {is: 10}
+
+    def self.authenticate 
+
+    end
 end
