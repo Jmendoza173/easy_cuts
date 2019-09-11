@@ -2,9 +2,8 @@ class CustomersController < ApplicationController
     before_action :set_customer, only: [:show, :edit, :update, :destroy]
 
     def show
-        @user = User.find(params[:id])
-        unless @logged_in_user && @logged_in_user == @user
-            flash[:errors] = ["You don't have permission to see that page"]
+        unless @logged_in_customer && @logged_in_customer == @customer
+            flash[:errors] = ["You don't have permission to see this page"]
             redirect_to new_login_path
         end 
     end
@@ -19,11 +18,11 @@ class CustomersController < ApplicationController
     def create
         @customer = Customer.new(customer_params)
         if @customer.valid?
-            @customer.save
+            session[:customer_id] = @customer.id
             redirect_to @customer
         else
             flash[:errors] = @customer.errors.full_messages
-            render :new
+            redirect_to log_in_path
         end
     end
 
@@ -32,12 +31,13 @@ class CustomersController < ApplicationController
             redirect_to @customer
         else  
             flash[:errors] = @customer.errors.full_messages 
-            render :edit 
+            redirect_to edit_path
         end
     end
 
     def destroy 
         @customer.destroy
+        redirect_to log_in_path
     end
 
     private

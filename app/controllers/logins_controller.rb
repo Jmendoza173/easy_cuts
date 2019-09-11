@@ -1,4 +1,4 @@
-class SessionsController < ApplicationController 
+class LoginsController < ApplicationController 
 
     def create 
         customer = Customer.find_by(email: params[:email])

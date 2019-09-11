@@ -7,7 +7,7 @@ class ApplicationController < ActionController::Base
     @notification = flash["notification"]
     @errors = flash["errors"]
     if session[:customer_id]
-      @logged_in_user = Customer.find(session[:customer_id])
+      @logged_in_customer = Customer.find(session[:customer_id])
     end
   end
 end
