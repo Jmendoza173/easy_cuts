@@ -1,0 +1,19 @@
+<h1>Welcome</h1>
+
+<h3><%=link_to "Profile Info", customer_path%></h3>
+<%if flash[:notification]%>
+    <%=flash[:notification]%>
+<%end%>
+<p>Name: <%=@customer.name%> <%=button_to "Edit", name_change_path(@customer), method: :get %></p>
+<p>Age: <%=@customer.age%><%=button_to "Edit", age_change_path(@customer), method: :get %></p>
+<%if @customer.favorite_barber == nil%>
+    <p>Favorite Barber: None<%=button_to "Edit", fav_change_path(@customer), method: :get %></p>
+<%else%>
+    <p>Favorite Barber: <%=@customer.favorite_barber%><%=button_to "Edit", fav_change_path(@customer), method: :get %></p>
+<%end%>
+<p>Location: <%=@customer.location%><%=button_to "Edit", loc_change_path(@customer), method: :get %></p>
+<p>Cell: <%=@customer.cell%><%=button_to "Edit", cell_change_path(@customer), method: :get %></p>
+<p>To change email and password click on <%=link_to "Security", confirmation_path()%></p>
+<h3><%=link_to "Make An Appointment"%></h3>
+<h3><%=link_to "Edit Appointment"%></h3>
+<h3><%=link_to "Cancel Appointment"%></h3>
