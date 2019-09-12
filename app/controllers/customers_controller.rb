@@ -68,4 +68,8 @@ class CustomersController < ApplicationController
     def customer_params
         params.require(:customer).permit(:name, :age, :favorite_barber, :location, :email, :password, :password_confirmation, :cell)
     end
+
+    def require_login
+      if 
+    end
 end
