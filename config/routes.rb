@@ -6,6 +6,9 @@ Rails.application.routes.draw do
   get "/services/new_facial_hair", to: "services#new_facial_hair", as: "facial_hair"
   get "/services/new_extra", to: "services#new_extra", as: "extra"
   get "/signup", to: "customers#new", as: "sign_up"
+  get "/login", to: "customers#login", as: "login"
+  post "/login", to: "users#authenticate", as: "authenticate"
+  delete 'logout/:id' => "customers#logout", as: :logout
   resources :appointments
   resources :barbers
   resources :shop_services

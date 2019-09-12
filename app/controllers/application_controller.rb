@@ -10,4 +10,9 @@ class ApplicationController < ActionController::Base
       @logged_in_user = Customer.find(session[:customer_id])
     end
   end
+
+  def current_user
+  @user ||= User.where("id=?",session[:user_id]).first
+  end
+  helper_method :current_user
 end

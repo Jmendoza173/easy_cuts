@@ -1,12 +1,31 @@
 class CustomersController < ApplicationController
     before_action :set_customer, only: [:show, :edit, :update, :destroy]
+    before_action :require_login, only: [:show, :edit, :update, :destroy]
+
+    def login
+
+    end
+
+    def logout
+      session.delete(:customer_id)
+    end
+
+    def authenticate
+      @customer = Customer.authenticate(customer_params)
+      if @customer.valid?
+        redirect_to @customer
+      else
+        flash[:errors] = @customer.errors.full_messages
+        redirect_to :login
+      end
+    end
 
     def show
         @user = User.find(params[:id])
         unless @logged_in_user && @logged_in_user == @user
             flash[:errors] = ["You don't have permission to see that page"]
             redirect_to new_login_path
-        end 
+        end
     end
 
     def new
@@ -30,13 +49,13 @@ class CustomersController < ApplicationController
     def update
         if @customer.update(customer_params)
             redirect_to @customer
-        else  
-            flash[:errors] = @customer.errors.full_messages 
-            render :edit 
+        else
+            flash[:errors] = @customer.errors.full_messages
+            render :edit
         end
     end
 
-    def destroy 
+    def destroy
         @customer.destroy
     end
 
@@ -46,7 +65,7 @@ class CustomersController < ApplicationController
         @customer = Customer.find(params[:id])
     end
 
-    def customer_params 
+    def customer_params
         params.require(:customer).permit(:name, :age, :favorite_barber, :location, :email, :password, :password_confirmation, :cell)
     end
 end
