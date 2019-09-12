@@ -1,0 +1,23 @@
+<h3>Log in</h3>
+<% if flash[:notification]%>
+  <%=flash[:notification]%>
+<%end%>
+<%if flash[:errors]%>
+    <%flash[:errors].each do |msg|%>
+      <%=msg%>
+    <%end%>
+<%end%>
+<%= form_tag logins_path do %>
+  <ul>
+    <li>
+      <%= label_tag :email %>
+      <%= text_field_tag :email %>
+    </li>
+    <li>
+      <%= label_tag :password %>
+      <%= password_field_tag :password %>
+    </li>
+  </ul>
+  <%= submit_tag "Log in" %>
+<% end %>
+<p>If you dont have an account click on <%=link_to "Sign up", sign_up_path%></p>

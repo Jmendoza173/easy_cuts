@@ -27,27 +27,40 @@ class AppointmentsController < ApplicationController
         end
     
         def create
-            @appointment = Appointment.new(appointment_params)
-            if @appointment.valid?
-                @appointment.save
-                redirect_to @appointment
+            if !@logged_in_customer
+              flash["errors"] = [ "You must be logged in to create appointment!" ]
+              redirect_to log_in_customer_path
             else
-                flash[:errors] = @appointment.errors.full_messages
-                render :new
+                @vote = Vote.create(color_id: params[:color_id], user_id: session[:user_id])
+                @appointment = Appointment.new(appointment_params)
+                if @appointment.valid?
+                    @appointment.save
+                    flash["notification"] = "You have created an Appointment with #{@appointment.barber.name} on #{@appointment.date} #{@appointment.time}"
+                    redirect_to @appointment
+                else
+                    flash[:errors] = @appointment.errors.full_messages
+                    redirect_to new_path
+                end
             end
         end
-    
+
         def update
             if @appointment.update(appointment_params)
                 redirect_to @appointment
             else
                 flash[:errors] = @appointment.errors.full_messages
-                render :edit
+                redirect_to edit_path
             end
         end
-    
+        
         def destroy
-            @appointment.destroy
+            if @logged_in_customer && @appointment.customer == @logged_in_customer
+              flash[:notification] = "Appointment has been deleted"
+              redirect_to customer_path
+            else
+              flash[:errors] = ["You don't have permission to see that page"]
+              redirect_to log_in_path, method: :get
+            end
         end
     
         private

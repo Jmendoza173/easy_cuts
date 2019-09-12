@@ -1,0 +1,22 @@
+<h1>Welcome</h1>
+
+<h3><%=link_to "Profile Info", profile_path%></h3>
+<%if flash[:errors]%>
+    <ul>
+        <%flash[:errors].each do |msg|%>
+            <li>
+                <%=msg%>
+            </li>
+        <%end%>
+    </ul>
+<%end%>
+<p>Name: <%=@customer.name%></p>
+<p>Age: <%=@customer.age%></p>
+<p><%= form_for @customer do |f|%><%=f.label :barber_id, "Favorite Barber: "%><%=f.collection_select :barber_id, Barber.all, :name, :name%>
+<%=f.submit "Update"%><%end%></p>
+<p>Location: <%=@customer.location%></p>
+<p>Cell: <%=@customer.cell%></p>
+<p>To change email and password click on security</p>
+<h3><%=link_to "Make An Appointment"%></h3>
+<h3><%=link_to "Edit Appointment"%></h3>
+<h3><%=link_to "Cancel Appointment"%></h3>

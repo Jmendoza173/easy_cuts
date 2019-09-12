@@ -1,0 +1,5 @@
+<h1>Security Setting</h1>
+
+<p>Email: <%=@customer.email%><%=button_to "Edit", email_change_path(@customer), method: :get %></p>
+<p><%= form_for @customer do |f|%><%=f.label :password, "Password: "%><%=f.password_field :password%>
+<%=f.submit "Update"%><%end%></p>
