@@ -1,0 +1,9 @@
+<h1><%=link_to "Profile",bprofile_path%></h1>
+<h2>Security Setting</h2>
+
+<p>Email: <%=@barber.email%><%=button_to "Edit", email_path(@barber), method: :get %></p>
+<p>Password <%=button_to "Update Password", pass_path(@barber),method: :get %></p>
+<br>
+<%= form_for @barber, method: :delete do |f| %>
+<%=f.label "Delete your Account: "%><%= f.submit "Delete" %><%end%>
+

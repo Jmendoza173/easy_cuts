@@ -1,0 +1,7 @@
+<h1><%=link_to "Profile",bprofile_path%></h1>
+<h2>Security Setting</h2>
+<p><%= form_for @barber do |f|%><%=f.label :email, "Email: "%><%=f.text_field :email%>
+<%=f.submit "Update"%><%end%></p>
+<p>Password <%=button_to "Update Password", pass_change_path(@barber)%></p>
+<%= form_for @barber, method: :delete do |f| %>
+<%=f.label "Delete your Account: "%><%= f.submit "Delete" %><%end%>

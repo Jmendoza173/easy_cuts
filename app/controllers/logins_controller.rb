@@ -1,7 +1,7 @@
 class LoginsController < ApplicationController
 
-    def new
-    end
+    # def new
+    # end
 
     def create
         customer = Customer.find_by(email: params[:email])
@@ -11,7 +11,7 @@ class LoginsController < ApplicationController
                 session[:customer_id] = customer.id
                 redirect_to customer_path(customer.id)
             else
-                flash[:notification] = ["Either your Email or Password are incorrect."]
+                flash[:notification] = "Either your Email or Password are incorrect."
                 redirect_to new_login_path
             end
         # elsif barber
@@ -30,7 +30,7 @@ class LoginsController < ApplicationController
         # barber = Barber.find_by(email: params[:email])
         # if customer
             if customer && customer.authenticate(params[:password])
-                session[:customer] = customer.id
+                session[:customer_id] = customer.id
                 redirect_to security_path(customer)
             else
                 flash[:notification] = ["Either your Email or Password are incorrect."]

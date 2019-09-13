@@ -1,0 +1,24 @@
+<h3><%=link_to "Profile Info", bprofile_path%></h3>
+<%if flash[:notification]%>
+    <%=flash[:notification]%>
+<%end%>
+<%if flash[:errors]%>
+    <ul>
+        <%flash[:errors].each do |msg|%>
+            <li>
+                <%=msg%>
+            </li>
+        <%end%>
+    </ul>
+<%end%>
+<p>Name: <%=@barber.name%> <%=button_to "Edit", name_path(@barber), method: :get %></p>
+<p>Are you available: <%=@barber.if_available == true ? "Yes" : "No"%> <%=button_to "Edit", available_path(@barber), method: :get %></p>
+<p>Do you accept cash: <%=@barber.accept_cash == true ? "Yes" : "No"%> <%=button_to "Edit", cash_path(@barber), method: :get %></p>
+<p>Do you accept card: <%=@barber.accept_card == true ? "Yes" : "No"%> <%=button_to "Edit", card_path(@barber), method: :get %></p>
+<p><%= form_for @barber do |f|%><%=f.label :cell, "Cell: "%><%=f.number_field :cell%>
+<%=f.submit "Update"%><%end%></p>
+<p>My Barber Shop: <%=@barber.barber_shop.name%> <%=button_to "Edit", shop_path(@barber), method: :get %></p>
+<p>To change email and password click on <%=link_to "Security", bsecurity_path%></p>
+<h3><%=link_to "Today's Appointments"%></h3>
+<h3><%=link_to "Edit Appointment"%></h3>
+<h3><%=link_to "Cancel Appointment"%></h3>

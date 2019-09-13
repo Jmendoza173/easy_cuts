@@ -12,12 +12,12 @@ class AppointmentsController < ApplicationController
             @appointment = Appointment.new
             @barbers = Barber.all
             @customers = Customer.all
-            @services = Service.all
-            @hairs = @services.select {|service| service.hair}
-            @shape_ups = @services.select {|service| service.shape_up}
-            @facials = @services.select {|service| service.facial}
-            @facial_hairs = @services.select {|service| service.facial_hair}
-            @extras = @services.select {|service| service.extra}
+            # @services = Service.all
+            # @hairs = Service.all.select {|service| service.hair}
+            # @shape_ups = Service.all.select {|service| service.shape_up}
+            # @facials = Service.all.select {|service| service.facial}
+            # @facial_hairs = Service.all.select {|service| service.facial_hair}
+            # @extras = Service.all.select {|service| service.extra}
         end
     
         def edit
@@ -27,11 +27,11 @@ class AppointmentsController < ApplicationController
         end
     
         def create
-            if !@logged_in_customer
-              flash["errors"] = [ "You must be logged in to create appointment!" ]
-              redirect_to log_in_customer_path
-            else
-                @vote = Vote.create(color_id: params[:color_id], user_id: session[:user_id])
+            # if !@logged_in_customer
+            #   flash["errors"] = [ "You must be logged in to create appointment!" ]
+            #   redirect_to log_in_customer_path
+            # else
+                # @vote = Vote.create(color_id: params[:color_id], user_id: session[:user_id])
                 @appointment = Appointment.new(appointment_params)
                 if @appointment.valid?
                     @appointment.save
@@ -39,9 +39,9 @@ class AppointmentsController < ApplicationController
                     redirect_to @appointment
                 else
                     flash[:errors] = @appointment.errors.full_messages
-                    redirect_to new_path
+                    redirect_to new_appointment_path
                 end
-            end
+            # end
         end
 
         def update
@@ -66,10 +66,10 @@ class AppointmentsController < ApplicationController
         private
     
         def set_appointment
-            @appointment = Appointment.find([:id])
+            @appointment = Appointment.find(params[:id])
         end
     
         def appointment_params
-            params.require(:appointment).permit(:date, :time, :service, :customer, :barber)
+            params.require(:appointment).permit(:date, :time, :customer_id, :barber_id)
         end 
 end
