@@ -13,7 +13,7 @@
       <header>
         <% if @logged_in_customer %>
           Logged in as <%= @logged_in_customer.name %>
-          <%= form_tag logout_path, method: :delete do %>
+          <%= form_tag clogout_path, method: :delete do %>
             <%= button_tag  "logout" %>
           <% end %>
         <%end%>

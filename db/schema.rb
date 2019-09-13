@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_09_11_133756) do
+ActiveRecord::Schema.define(version: 2019_09_13_172201) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -18,14 +18,12 @@ ActiveRecord::Schema.define(version: 2019_09_11_133756) do
   create_table "appointments", force: :cascade do |t|
     t.date "date"
     t.time "time"
-    t.bigint "service_id", null: false
     t.bigint "customer_id", null: false
     t.bigint "barber_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["barber_id"], name: "index_appointments_on_barber_id"
     t.index ["customer_id"], name: "index_appointments_on_customer_id"
-    t.index ["service_id"], name: "index_appointments_on_service_id"
   end
 
   create_table "barber_shops", force: :cascade do |t|
@@ -38,17 +36,16 @@ ActiveRecord::Schema.define(version: 2019_09_11_133756) do
   create_table "barbers", force: :cascade do |t|
     t.string "name"
     t.string "email"
-    t.string "password"
     t.boolean "if_available"
     t.boolean "accept_cash"
     t.boolean "accept_card"
-    t.integer "cell"
+    t.bigint "cell"
     t.bigint "barber_shop_id", null: false
-    t.bigint "service_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "password_digest"
+    t.string "specialty"
     t.index ["barber_shop_id"], name: "index_barbers_on_barber_shop_id"
-    t.index ["service_id"], name: "index_barbers_on_service_id"
   end
 
   create_table "customers", force: :cascade do |t|
@@ -57,7 +54,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_133756) do
     t.string "favorite_barber"
     t.string "location"
     t.string "email"
-    t.integer "cell"
+    t.bigint "cell"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
@@ -85,9 +82,7 @@ ActiveRecord::Schema.define(version: 2019_09_11_133756) do
 
   add_foreign_key "appointments", "barbers"
   add_foreign_key "appointments", "customers"
-  add_foreign_key "appointments", "services"
   add_foreign_key "barbers", "barber_shops"
-  add_foreign_key "barbers", "services"
   add_foreign_key "shop_services", "barber_shops"
   add_foreign_key "shop_services", "services"
 end

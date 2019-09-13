@@ -1,3 +1,7 @@
 <h1>Create Appointment</h1>
-
+<%if flash[:errors]%>
+    <%flash[:errors].each do |msg|%>
+        <%=msg%>
+    <%end%>
+<%end%>
 <%=render 'form'%>
