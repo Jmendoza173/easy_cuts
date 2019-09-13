@@ -1,3 +1,5 @@
+<div id="login">
+      <div class="center">
 <h3>Log in</h3>
 <% if flash[:notification]%>
   <%=flash[:notification]%>
@@ -7,17 +9,21 @@
       <%=msg%>
     <%end%>
 <%end%>
+
 <%= form_tag logins_path do %>
-  <ul>
-    <li>
+  <div>
       <%= label_tag :email %>
       <%= text_field_tag :email %>
-    </li>
-    <li>
+  </div>
+  <div>
+
       <%= label_tag :password %>
       <%= password_field_tag :password %>
-    </li>
-  </ul>
-  <%= submit_tag "Log in" %>
+  </div>
+  <br>
+  <%= submit_tag "Log in", class: 'submit' %>
 <% end %>
-<p>If you dont have an account click on <%=link_to "Sign up", sign_up_path%></p>
+<p>If you dont have an account click on <br><br>
+  <%=link_to "Sign up", sign_up_path, class: 'submit' %></p>
+  </div>
+</div>
