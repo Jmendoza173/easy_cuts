@@ -1,4 +1,9 @@
 <h3>Log in</h3>
+<div class="login">
+  <div class="sign-up">
+  <%=link_to "Sign up", csign_up_path, class: "submit"%>
+  </div>
+  <div class="center">
 <% if flash[:notification]%>
   <%=flash[:notification]%>
 <%end%>
@@ -18,6 +23,7 @@
       <%= password_field_tag :password %>
     </li>
   </ul>
-  <%= submit_tag "Log in" %>
+  <%= submit_tag "Log in", class: "submit"%>
 <% end %>
-<p>If you dont have an account click on <%=link_to "Sign up", csign_up_path%></p>
+</div>
+</div>

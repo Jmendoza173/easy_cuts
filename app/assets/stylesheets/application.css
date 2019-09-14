@@ -70,6 +70,9 @@ a:hover {
 }
   /* For a full size background image */
 
+.sign-up {
+  position: sticky;
+}
 
 #login, div {
   margin: auto;

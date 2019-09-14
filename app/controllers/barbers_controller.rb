@@ -65,25 +65,25 @@ class BarbersController < ApplicationController
                 redirect_to barber_path(barber.id)
             else
                 flash[:notification] = ["Either your Email or Password are incorrect."]
-                redirect_to blogin_view_path
+                redirect_to blogin_path
             end
     end
 
     def update
         if @barber.update(barber_params)
             flash[:notification] = "Update Complete"
-        else  
-            flash[:errors] = @barber.errors.full_messages 
+        else
+            flash[:errors] = @barber.errors.full_messages
         end
         redirect_to bprofile_path
     end
 
-    def destroy 
+    def destroy
         @barber.destroy
         redirect_to blogin_view_path
     end
 
-    def logout 
+    def logout
         session[:barber_id] = nil
         redirect_to blogin_view_path
     end
